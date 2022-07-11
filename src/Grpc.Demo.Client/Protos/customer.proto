@@ -1,0 +1,72 @@
+﻿syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "Grpc.Demo.Server.Grpc";
+
+package customer.v1;
+
+service Customer {
+  rpc GetCustomerById (GetCustomerByIdRequest) returns (GetCustomerByIdResponse);
+  rpc GetCustomerByEmail (GetCustomerByEmailRequest) returns (GetCustomerByEmailResponse);
+  rpc GetAllCustomers (GetAllCustomersRequest) returns (GetAllCustomersResponse);
+  rpc AddCustomer (AddCustomerRequest) returns (AddCustomerResponse);
+  rpc UpdateCustomer (UpdateCustomerRequest) returns (UpdateCustomerResponse);
+  rpc DeleteCustomer (DeleteCustomerRequest) returns (DeleteCustomerResponse);
+}
+
+message GetCustomerByIdRequest{
+  int32 id = 1;
+}
+
+message GetCustomerByIdResponse {
+  CustomerRecord customer = 1;
+}
+
+message GetCustomerByEmailRequest {
+  string emailAddress = 1;
+}
+
+message GetCustomerByEmailResponse {
+  CustomerRecord customer = 1;
+}
+
+message GetAllCustomersRequest {
+
+}
+
+message GetAllCustomersResponse {
+  repeated CustomerRecord customers = 1;
+}
+
+message AddCustomerRequest {
+  CustomerRecord customer = 1;
+}
+
+message AddCustomerResponse {
+  CustomerRecord customer = 1;
+}
+
+message UpdateCustomerRequest {
+  int32 id = 1;
+  CustomerRecord customer = 2;
+}
+
+message UpdateCustomerResponse {
+
+}
+
+message DeleteCustomerRequest {
+  int32 id = 1;
+}
+
+message DeleteCustomerResponse{
+
+}
+
+message CustomerRecord {
+  int32 id = 1;
+  string email = 2;
+  string fullName = 3;
+  google.protobuf.Timestamp dateOfBirth = 4;
+}
